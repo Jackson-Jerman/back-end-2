@@ -24,13 +24,14 @@ module.exports = {
         let { type } = req.body
         let index = houses.findIndex(elem => elem.id)
 
-        if (type === 'minus' && houses[index.price > 1]){
+        if (type === 'minus' && houses[index].price >= 1) {
             houses[index].price -= 10000;
+            res.status(200).send(houses);
         } else if(type === 'plus') {
             houses[index].price += 10000;
             res.status(200).send(houses);
         } else {
-            res.status(400).send('Invalid star rating');
+            res.status(400).send('Invalid price');
         }
 
     },
